@@ -7,7 +7,7 @@ class Coordinate
   end
 
   def randomize!(board)
-    @x = Random.new.rand(0...board.width)
-    @y = Random.new.rand(0...board.height)
+    @x = Random.new.rand 0...board.width
+    @y = Random.new.rand 0...board.height
   end
 end

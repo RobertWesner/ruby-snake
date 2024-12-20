@@ -1,0 +1,11 @@
+class Board
+  @width: Integer
+  @height: Integer
+
+  attr_reader width: Integer
+  attr_reader height: Integer
+
+  def initialize: (width: Integer, height: Integer) -> void
+  def render: (snake: Snake, apple: Coordinate) -> void
+end
+

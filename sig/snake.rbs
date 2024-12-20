@@ -1,0 +1,15 @@
+class Snake
+  DIRECTION_LEFT: Integer
+  DIRECTION_RIGHT: Integer
+  DIRECTION_UP: Integer
+  DIRECTION_DOWN: Integer
+
+  @segments: Array[Coordinate]
+
+  attr_reader segments: Array[Coordinate]
+
+  def initialize: (x: Integer, y: Integer, length: Integer) -> void
+  def move!: (direction: Integer, board: Board) -> bool
+  def collides_with?: (apple: Coordinate) -> bool
+  def elongate!: -> void
+end

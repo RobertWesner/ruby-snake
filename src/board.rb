@@ -1,3 +1,5 @@
+require_relative "renderer"
+
 class Board
   attr_reader :width, :height
 
@@ -7,24 +9,16 @@ class Board
   end
 
   def render(snake, apple)
-    board = []
-    @height.times do
-      board.push(Array.new(@width) { " " })
-    end
+    renderer = Renderer.new(@width, @height)
 
     snake.segments[1..].each do |segment|
-      board[segment.y][segment.x] = "o"
+      renderer.draw! segment.x, segment.y, "[ ]"
     end
     segment = snake.segments[0]
-    board[segment.y][segment.x] = "O"
+    renderer.draw! segment.x, segment.y, "[:]"
 
-    board[apple.y][apple.x] = "*"
+    renderer.draw! apple.x, apple.y, "(')"
 
-    puts "\e[H\e[2J"
-    puts "." + "-" * @width + ".\n"
-    board.each do |row|
-      puts "|" + row.join("") + "|\n"
-    end
-    puts "'" + "-" * @width + "'\n"
+    renderer.render
   end
 end

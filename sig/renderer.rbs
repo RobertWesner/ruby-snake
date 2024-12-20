@@ -1,0 +1,7 @@
+class Renderer
+  @buffer: Array[Array[String]]
+  @horizontal_line: String
+
+  def draw!: (x: Integer, y: Integer, text: String) -> void
+  def render: -> void
+end
