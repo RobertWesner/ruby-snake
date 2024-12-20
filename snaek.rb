@@ -12,31 +12,46 @@ direction = Snake::DIRECTION_RIGHT
 snake.move!(direction, board)
 
 while true
-  input = STDIN.getch[0].ord
+  system "stty raw -echo"
+  input = ""
+  while (c = (STDIN.read_nonblock(1).ord rescue nil)) do
+    input = c
+  end
+  system "stty -raw echo"
+
+  sleep 0.2
 
   case input
   when "w"[0].ord
-    direction = Snake::DIRECTION_UP
+    if direction != Snake::DIRECTION_DOWN
+      direction = Snake::DIRECTION_UP
+    end
   when "a"[0].ord
-    direction = Snake::DIRECTION_LEFT
+    if direction != Snake::DIRECTION_RIGHT
+      direction = Snake::DIRECTION_LEFT
+    end
   when "s"[0].ord
-    direction = Snake::DIRECTION_DOWN
+    if direction != Snake::DIRECTION_UP
+      direction = Snake::DIRECTION_DOWN
+    end
   when "d"[0].ord
-    direction = Snake::DIRECTION_RIGHT
+    if direction != Snake::DIRECTION_LEFT
+      direction = Snake::DIRECTION_RIGHT
+    end
   when 27
     break;
   else
     # pass
   end
 
-  unless snake.move!(direction, board)
+  unless snake.move! direction, board
     break
   end
 
-  if snake.collides_with?(apple)
+  if snake.collides_with? apple
     snake.elongate!
-    apple.randomize!(board)
+    apple.randomize! board
   end
 
-  board.render(snake, apple)
+  board.render snake, apple
 end
