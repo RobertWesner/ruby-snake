@@ -6,5 +6,5 @@ class Coordinate
   attr_accessor y: Integer
 
   def initialize : (x: Integer, y: Integer) -> void
-  def randomize : (board: Board) -> void
+  def randomize! : (board: Board) -> void
 end

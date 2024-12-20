@@ -9,19 +9,22 @@ class Board
   def render(snake, apple)
     board = []
     @height.times do
-      board.push(Array.new(@width) { ' ' })
+      board.push(Array.new(@width) { " " })
     end
 
-    snake.segments.each do |segment|
-      board[segment.y][segment.x] = 'O'
+    snake.segments[1..].each do |segment|
+      board[segment.y][segment.x] = "o"
     end
+    segment = snake.segments[0]
+    board[segment.y][segment.x] = "O"
 
-    board[apple.y][apple.x] = '*'
+    board[apple.y][apple.x] = "*"
 
-    print("." + "-" * @width + ".\n")
+    puts "\e[H\e[2J"
+    puts "." + "-" * @width + ".\n"
     board.each do |row|
-      print("|" + row.join("") + "|\n")
+      puts "|" + row.join("") + "|\n"
     end
-    print("'" + "-" * @width + "'\n")
+    puts "'" + "-" * @width + "'\n"
   end
 end

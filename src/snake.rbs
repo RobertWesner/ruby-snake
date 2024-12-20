@@ -10,9 +10,9 @@ class Snake
 
   def initialize : (x: Integer, y: Integer, length: Integer) -> void
 
-  def move : (direction: Integer, board: Board) -> bool
+  def move! : (direction: Integer, board: Board) -> bool
 
-  def collides_with : (apple: Coordinate) -> bool
+  def collides_with? : (apple: Coordinate) -> bool
 
-  def elongate : -> void
+  def elongate! : -> void
 end

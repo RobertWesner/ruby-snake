@@ -6,10 +6,10 @@ board = Board.new(32, 18)
 snake = Snake.new(0, 0)
 
 apple = Coordinate.new(0, 0)
-apple.randomize(board)
+apple.randomize!(board)
 
 direction = Snake::DIRECTION_RIGHT
-snake.move(direction, board)
+snake.move!(direction, board)
 
 while true
   input = STDIN.getch[0].ord
@@ -29,13 +29,13 @@ while true
     # pass
   end
 
-  unless snake.move(direction, board)
+  unless snake.move!(direction, board)
     break
   end
 
-  if snake.collides_with(apple)
-    snake.elongate
-    apple.randomize(board)
+  if snake.collides_with?(apple)
+    snake.elongate!
+    apple.randomize!(board)
   end
 
   board.render(snake, apple)
