@@ -1,0 +1,10 @@
+class Coordinate
+  @x: Integer
+  @y: Integer
+
+  attr_accessor x: Integer
+  attr_accessor y: Integer
+
+  def initialize : (x: Integer, y: Integer) -> void
+  def randomize : (board: Board) -> void
+end
